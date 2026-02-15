@@ -1,0 +1,88 @@
+{
+  "kind": "build_request",
+  "title": "Rename app to Monet Tracker, update Daily Spending chart color, and polish UI",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-9",
+      "text": "Change the color used by the Dashboard 'Daily Spending' graph (weekly bar chart) to a different chart color token so it is visually distinct from the other chart.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "give a different colour to Daily spend graph"
+        ]
+      },
+      "acceptanceCriteria": [
+        "In `frontend/src/components/charts/WeeklySpendBarChart.tsx`, the `<Bar ... />` fill no longer uses `hsl(var(--chart-1))` and instead uses a different existing chart token (e.g., `hsl(var(--chart-2))`).",
+        "The weekly bar chart remains readable in both light and dark themes (bars, axes, tooltip).",
+        "No other charts change color unless necessary to preserve visual contrast."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Rename the app to \"Monet Tracker\" everywhere the app name is presented to the user (header brand, footer copyright, Settings/About copy, and the HTML document title).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "give name to this app Monet tracker"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Header brand text in `frontend/src/components/layout/AppShell.tsx` displays \"Monet Tracker\" instead of \"ExpenseTracker\".",
+        "Footer copyright line in `frontend/src/components/layout/AppShell.tsx` references \"Monet Tracker\".",
+        "The Settings \"About\" description in `frontend/src/screens/SettingsScreen.tsx` references \"Monet Tracker\" (and no longer mentions \"ExpenseTracker\").",
+        "`frontend/index.html` `<title>` includes \"Monet Tracker\".",
+        "All user-facing occurrences of the old app name are removed from the frontend."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Update the UI styling to look more professional and cohesive across the app shell and top-level screens (without adding new features): refine spacing, typography hierarchy, and subtle surface styling to match a polished finance-tracker aesthetic.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "make it professional to look"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The AppShell header (brand + nav) has improved visual polish (consistent alignment, spacing, and typographic hierarchy) while keeping existing navigation items and routes unchanged.",
+        "Cards and key sections on primary screens (Dashboard, Add Expense, Expense List, Settings) maintain consistent spacing and visual rhythm (e.g., section headers, card padding, grid gaps).",
+        "UI remains accessible: text contrast stays acceptable in both light and dark mode, and interactive elements retain clear hover/focus states.",
+        "No backend changes are introduced as part of this polish task."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify any files under `frontend/src/components/ui` (compose existing UI components instead).",
+    "Do not edit immutable paths listed in SYSTEM_CONTEXT (e.g., `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`).",
+    "Keep backend architecture unchanged (single Motoko actor); no backend work is required for these changes."
+  ],
+  "nonGoals": [
+    "Adding new product features (budgets, recurring expenses, exports, payments, notifications).",
+    "Changing expense calculations, filters, or data model.",
+    "Implementing new authentication methods beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

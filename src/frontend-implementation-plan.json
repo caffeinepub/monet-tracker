@@ -1,0 +1,98 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Monet Tracker rename, chart color update, and UI polish",
+  "requirements": [
+    {
+      "id": "REQ-9",
+      "summary": "Update the Dashboard weekly 'Daily Spending' bar chart to use a different existing chart color token for clearer visual distinction.",
+      "acceptanceCriteria": [
+        "In `frontend/src/components/charts/WeeklySpendBarChart.tsx`, the `<Bar ... />` fill no longer uses `hsl(var(--chart-1))` and instead uses a different existing chart token (e.g., `hsl(var(--chart-2))`).",
+        "The weekly bar chart remains readable in both light and dark themes (bars, axes, tooltip).",
+        "No other charts change color unless necessary to preserve visual contrast."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/charts/WeeklySpendBarChart.tsx",
+          "operation": "modify",
+          "description": "Change the Recharts `<Bar>` fill from `hsl(var(--chart-1))` to a different existing chart token (e.g., `hsl(var(--chart-2))`) and confirm tooltip/axis styling remains readable in light/dark mode."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Rename the app to Monet Tracker across all user-facing surfaces (shell, settings/about, and document title).",
+      "acceptanceCriteria": [
+        "Header brand text in `frontend/src/components/layout/AppShell.tsx` displays \"Monet Tracker\" instead of \"ExpenseTracker\".",
+        "Footer copyright line in `frontend/src/components/layout/AppShell.tsx` references \"Monet Tracker\".",
+        "The Settings \"About\" description in `frontend/src/screens/SettingsScreen.tsx` references \"Monet Tracker\" (and no longer mentions \"ExpenseTracker\").",
+        "`frontend/index.html` `<title>` includes \"Monet Tracker\".",
+        "All user-facing occurrences of the old app name are removed from the frontend."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/AppShell.tsx",
+          "operation": "modify",
+          "description": "Update header brand text and footer copyright copy to use “Monet Tracker”, ensuring no remaining user-facing “ExpenseTracker” references in this shell."
+        },
+        {
+          "path": "frontend/src/screens/SettingsScreen.tsx",
+          "operation": "modify",
+          "description": "Update the About section copy to reference “Monet Tracker” and remove any mention of the previous app name."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update the HTML document `<title>` to include “Monet Tracker” and remove the old app naming."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Polish UI styling for a more professional, cohesive finance-tracker aesthetic across the app shell and primary screens without adding features.",
+      "acceptanceCriteria": [
+        "The AppShell header (brand + nav) has improved visual polish (consistent alignment, spacing, and typographic hierarchy) while keeping existing navigation items and routes unchanged.",
+        "Cards and key sections on primary screens (Dashboard, Add Expense, Expense List, Settings) maintain consistent spacing and visual rhythm (e.g., section headers, card padding, grid gaps).",
+        "UI remains accessible: text contrast stays acceptable in both light and dark mode, and interactive elements retain clear hover/focus states.",
+        "No backend changes are introduced as part of this polish task."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/AppShell.tsx",
+          "operation": "modify",
+          "description": "Refine header/footer/main layout styling for improved hierarchy and spacing (e.g., brand typography, header spacing, footer density) while keeping existing routes and navigation intact. Use existing shadcn-ui composition patterns already present; do not modify any files under `frontend/src/components/ui`. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/layout/PrimaryNav.tsx",
+          "operation": "modify",
+          "description": "Polish top navigation presentation (button spacing, alignment, responsive label behavior, and active/hover/focus clarity) using existing shadcn-ui `Button` without changing nav items/routes. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/screens/DashboardScreen.tsx",
+          "operation": "modify",
+          "description": "Normalize screen-level spacing and typography (page header spacing, Tabs spacing, grid gaps) to match a cohesive rhythm; keep information and layout structure the same. Use existing shadcn-ui components as composed today. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/screens/AddExpenseScreen.tsx",
+          "operation": "modify",
+          "description": "Align page header spacing/typographic hierarchy and card section spacing with the rest of the app for a more polished finance-tracker look, without changing form behavior. Use existing shadcn-ui Card composition; do not edit `frontend/src/components/ui`. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/screens/ExpenseListScreen.tsx",
+          "operation": "modify",
+          "description": "Improve consistency of section headers, card padding, and vertical rhythm (filters card + list area), keeping existing functionality unchanged. Use existing shadcn-ui components as-is. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/screens/SettingsScreen.tsx",
+          "operation": "modify",
+          "description": "Polish settings page typography and spacing (header, card spacing, descriptions) for a more cohesive look while preserving accessibility and current interactions. Use existing shadcn-ui components as composed. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Make small global style refinements that improve typography hierarchy and subtle surface feel (e.g., heading tracking/weights already defined, focus ring utility usage consistency), ensuring contrast remains acceptable in light/dark mode and without introducing new features or modifying shadcn-ui component source."
+        }
+      ]
+    }
+  ]
+}

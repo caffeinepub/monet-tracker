@@ -1,0 +1,30 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T15:01:49.027Z",
+  "summary": "REQ-9/10/11 are largely implemented: WeeklySpendBarChart bar fill changed to chart-2; app renamed to “Monet Tracker” in AppShell, Settings About text, and index.html title; UI polish applied across AppShell/nav, top-level screens, and global styling. One notable addition in AppShell appears unrelated to the request (new footer attribution/UTM logic).",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Added/changed footer attribution with external link to caffeine.ai (including UTM tracking based on hostname) and a Heart icon.",
+      "reason": "BuildRequest did not ask to add or change product attribution/marketing links or tracking parameters; only rename, chart color token change, and general UI polish were requested.",
+      "evidence": [
+        "frontend/src/components/layout/AppShell.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/index.html",
+    "frontend/src/components/charts/WeeklySpendBarChart.tsx",
+    "frontend/src/components/layout/AppShell.tsx",
+    "frontend/src/components/layout/PrimaryNav.tsx",
+    "frontend/src/index.css",
+    "frontend/src/screens/AddExpenseScreen.tsx",
+    "frontend/src/screens/DashboardScreen.tsx",
+    "frontend/src/screens/ExpenseListScreen.tsx",
+    "frontend/src/screens/SettingsScreen.tsx",
+    "project_state.json"
+  ]
+}

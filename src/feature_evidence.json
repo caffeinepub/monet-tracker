@@ -1,0 +1,67 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-change-the-color-used-by-the-dashboard-daily-spending-graph-weekly-bar-chart-to-a-different-chart-color-token-so-it-is-visually-distinct-from-the-other-chart",
+      "featureTitle": "Change the color used by the Dashboard 'Daily Spending' graph (weekly bar chart) to a different chart color token so it is visually distinct from the other chart.",
+      "files": [
+        "frontend/src/components/charts/WeeklySpendBarChart.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-rename-the-app-to-monet-tracker-everywhere-the-app-name-is-presented-to-the-user-header-brand-footer-copyright-settings-about-copy-and-the-html-document-title",
+      "featureTitle": "Rename the app to \"Monet Tracker\" everywhere the app name is presented to the user (header brand, footer copyright, Settings/About copy, and the HTML document title).",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/components/layout/AppShell.tsx",
+        "frontend/src/screens/SettingsScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-ui-styling-to-look-more-professional-and-cohesive-across-the-app-shell-and-top-level-screens-without-adding-new-features-refine-spacing-typography-hierarchy-and-subtle-surface-styling-to-match-a-polished-finance-tracker-aesthetic",
+      "featureTitle": "Update the UI styling to look more professional and cohesive across the app shell and top-level screens (without adding new features): refine spacing, typography hierarchy, and subtle surface styling to match a polished finance-tracker aesthetic.",
+      "files": [
+        "frontend/src/components/layout/AppShell.tsx",
+        "frontend/src/components/layout/PrimaryNav.tsx",
+        "frontend/src/index.css",
+        "frontend/src/screens/AddExpenseScreen.tsx",
+        "frontend/src/screens/DashboardScreen.tsx",
+        "frontend/src/screens/ExpenseListScreen.tsx",
+        "frontend/src/screens/SettingsScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
