@@ -29,7 +29,7 @@ export function WeeklySpendBarChart({ data, dateRange }: WeeklySpendBarChartProp
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl">Daily Spending</CardTitle>
+        <CardTitle>Daily Spending</CardTitle>
       </CardHeader>
       <CardContent>
         {isEmpty ? (
@@ -58,7 +58,7 @@ export function WeeklySpendBarChart({ data, dateRange }: WeeklySpendBarChartProp
                   borderRadius: '8px',
                 }}
               />
-              <Bar dataKey="amount" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="amount" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         )}

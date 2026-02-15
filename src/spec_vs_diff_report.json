@@ -1,30 +1,52 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-15T15:01:49.027Z",
-  "summary": "REQ-9/10/11 are largely implemented: WeeklySpendBarChart bar fill changed to chart-2; app renamed to “Monet Tracker” in AppShell, Settings About text, and index.html title; UI polish applied across AppShell/nav, top-level screens, and global styling. One notable addition in AppShell appears unrelated to the request (new footer attribution/UTM logic).",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-15T15:51:58.998Z",
+  "summary": "Diff adds a Capacitor-style Android scaffold/config and runtime utilities, plus some Android network/deeplink configuration and an APK build guide stub. However, the changes shown do not provide clear evidence that the Internet Identity login flow is actually wired into the existing authentication hook/UI, and the developer documentation appears truncated/incomplete in the diff. Backend logic was also modified even though the BuildRequest did not request backend feature changes.",
+  "missing_requirements": [
     {
-      "description": "Added/changed footer attribution with external link to caffeine.ai (including UTM tracking based on hostname) and a Heart icon.",
-      "reason": "BuildRequest did not ask to add or change product attribution/marketing links or tracking parameters; only rename, chart color token change, and general UI polish were requested.",
+      "id": "REQ-2",
+      "requirement": "Ensure Internet Identity authentication flow works from the Android APK (including any required WebView allow-list/navigation handling), and document any user steps needed to complete login on Android.",
+      "reason": "While a Capacitor auth bridge and Android deep link intent-filter are added, the diff summary does not show any integration where the existing login flow actually calls/uses the new `openInternetIdentityForAuth(...)` bridge to complete authentication and return to the app in an authenticated state.",
       "evidence": [
-        "frontend/src/components/layout/AppShell.tsx"
+        "frontend/src/utils/capacitorAuthBridge.ts",
+        "frontend/src/components/layout/AppShell.tsx",
+        "frontend/android/app/src/main/AndroidManifest.xml"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Add clear developer documentation for producing an installable APK and sharing it (debug build and optional release signing), including prerequisites, build commands, and where the APK artifact is output.",
+      "reason": "Documentation file is added, but its content in the diff is truncated and does not show the required step-by-step commands, APK output paths, ADB install steps, and how to switch between bundled assets vs remote URL.",
+      "evidence": [
+        "frontend/ANDROID_APK.md",
+        "frontend/README.md"
       ]
     }
   ],
-  "confidence": 0.74,
+  "hallucinated_features": [
+    {
+      "description": "Backend Motoko actor was modified with additional expense querying/aggregation-related functions and data changes beyond Android packaging/auth requirements.",
+      "reason": "BuildRequest focuses on Android packaging, WebView wrapper setup, Internet Identity flow handling in Android, and documentation. It explicitly constrains backend to remain a single actor, but does not request feature/logic expansions; the diff shows backend logic edits anyway.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.64,
   "changed_files": [
+    "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/index.html",
-    "frontend/src/components/charts/WeeklySpendBarChart.tsx",
+    "frontend/ANDROID_APK.md",
+    "frontend/README.md",
+    "frontend/android/app/src/main/AndroidManifest.xml",
+    "frontend/android/app/src/main/java/com/expensetracker/app/MainActivity.java",
+    "frontend/android/app/src/main/res/xml/network_security_config.xml",
+    "frontend/android/variables.gradle",
+    "frontend/capacitor.config.ts",
     "frontend/src/components/layout/AppShell.tsx",
-    "frontend/src/components/layout/PrimaryNav.tsx",
-    "frontend/src/index.css",
-    "frontend/src/screens/AddExpenseScreen.tsx",
-    "frontend/src/screens/DashboardScreen.tsx",
-    "frontend/src/screens/ExpenseListScreen.tsx",
-    "frontend/src/screens/SettingsScreen.tsx",
+    "frontend/src/utils/capacitorAuthBridge.ts",
+    "frontend/src/utils/capacitorRuntime.ts",
     "project_state.json"
   ]
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Allow all connections for development -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+    
+    <!-- Production domains for Internet Identity and IC -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">identity.ic0.app</domain>
+        <domain includeSubdomains="true">ic0.app</domain>
+        <domain includeSubdomains="true">icp0.io</domain>
+        <domain includeSubdomains="true">internetcomputer.org</domain>
+        <domain includeSubdomains="true">localhost</domain>
+    </domain-config>
+</network-security-config>

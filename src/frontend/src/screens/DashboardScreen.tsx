@@ -30,9 +30,9 @@ export default function DashboardScreen() {
 
   return (
     <div className="space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-4xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground text-lg">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+        <p className="text-muted-foreground mt-1">
           Track your spending and view insights
         </p>
       </div>
@@ -43,19 +43,19 @@ export default function DashboardScreen() {
           <TabsTrigger value="month">This Month</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="week" className="space-y-8 mt-8">
+        <TabsContent value="week" className="space-y-6 mt-6">
           <TotalsCards expenses={weekExpenses} isLoading={isLoading} />
           
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             <WeeklySpendBarChart data={dailyData} dateRange={weekRange} />
             <CategoryBreakdown data={categoryData} isLoading={isLoading} />
           </div>
         </TabsContent>
 
-        <TabsContent value="month" className="space-y-8 mt-8">
+        <TabsContent value="month" className="space-y-6 mt-6">
           <TotalsCards expenses={monthExpenses} isLoading={isLoading} />
           
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             <MonthlySpendTrendChart data={dailyData} dateRange={monthRange} />
             <CategoryBreakdown data={categoryData} isLoading={isLoading} />
           </div>

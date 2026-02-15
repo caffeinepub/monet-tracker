@@ -1,92 +1,32 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
-  "summary": "Professional student-focused expense tracker app (“Monet tracker”) to record daily expenses, show weekly/monthly totals with simple graphs, using straightforward calculations and no online payment features.",
-  "architectural_notes": [
-    "No online payment processing features (explicitly excluded).",
-    "Use straightforward calculations for weekly/monthly totals (no complex budgeting algorithms).",
-    "Design and architecture should be compatible with FlutterFlow app patterns."
-  ],
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-build-the-core-app-ia-information-architecture-and-navigation-on-the-frontend-with-these-screens-dashboard-overview-add-expense-expense-list-with-filters-and-settings-lightweight-use-english-for-all-user-facing-text",
-      "title": "Build the core app IA (information architecture) and navigation on the frontend with these screens: Dashboard (overview), Add Expense, Expense List (with filters), and Settings (lightweight). Use English for all user-facing text.",
+      "id": "feature-add-android-packaging-support-so-the-web-app-can-be-built-and-installed-as-an-android-apk-webview-wrapper-using-a-standard-approach-e-g-capacitor-that-works-with-a-react-vite-style-frontend",
+      "title": "Add Android packaging support so the web app can be built and installed as an Android APK (WebView wrapper) using a standard approach (e.g., Capacitor) that works with a React + Vite-style frontend.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-internet-identity-authentication-flow-works-from-the-android-apk-including-any-required-webview-allow-list-navigation-handling-and-document-any-user-steps-needed-to-complete-login-on-android",
+      "title": "Ensure Internet Identity authentication flow works from the Android APK (including any required WebView allow-list/navigation handling), and document any user steps needed to complete login on Android.",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-an-add-expense-form-that-allows-students-to-record-a-daily-expense-with-amount-category-date-picker-default-today-and-optional-note-include-basic-validation-and-inline-error-messages",
-      "title": "Create an Add Expense form that allows students to record a daily expense with amount, category, date picker (default today), and optional note; include basic validation and inline error messages.",
+      "id": "feature-add-clear-developer-documentation-for-producing-an-installable-apk-and-sharing-it-debug-build-and-optional-release-signing-including-prerequisites-build-commands-and-where-the-apk-artifact-is-output",
+      "title": "Add clear developer documentation for producing an installable APK and sharing it (debug build and optional release signing), including prerequisites, build commands, and where the APK artifact is output.",
       "reqIds": [
         "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-expense-list-view-with-sorting-and-filtering-filter-by-week-month-custom-date-range-filter-by-category-and-show-per-item-amount-category-date-and-note-preview-allow-edit-and-delete-actions",
-      "title": "Implement Expense List view with sorting and filtering: filter by week/month/custom date range, filter by category, and show per-item amount, category, date, and note preview; allow edit and delete actions.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-compute-and-display-weekly-and-monthly-totals-using-straightforward-math-sum-of-amounts-and-present-them-on-the-dashboard-and-in-reporting-sections-provide-per-category-breakdown-totals-for-the-selected-period",
-      "title": "Compute and display weekly and monthly totals using straightforward math (sum of amounts) and present them on the Dashboard and in reporting sections. Provide per-category breakdown totals for the selected period.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-simple-lightweight-graphs-to-the-dashboard-for-spending-trends-1-a-weekly-daily-spend-bar-chart-and-2-a-monthly-spend-trend-line-or-bar-chart-keep-visuals-minimal-and-readable",
-      "title": "Add simple, lightweight graphs to the Dashboard for spending trends: (1) a weekly daily-spend bar chart and (2) a monthly spend trend line or bar chart; keep visuals minimal and readable.",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-deliver-a-clean-professional-ui-ux-design-system-tailored-for-students-aligned-with-flutterflow-like-patterns-card-based-layout-clear-typographic-hierarchy-consistent-spacing-accessible-contrast-and-minimal-ornamentation-avoid-blue-purple-as-primary-brand-colors-unless-explicitly-requested",
-      "title": "Deliver a clean, professional UI/UX design system tailored for students, aligned with FlutterFlow-like patterns: card-based layout, clear typographic hierarchy, consistent spacing, accessible contrast, and minimal ornamentation. Avoid blue/purple as primary brand colors unless explicitly requested.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-provide-a-concise-in-repo-architecture-document-describing-frontend-modules-screens-components-state-backend-actor-api-surface-data-model-and-calculation-rules-weekly-monthly-boundaries-include-ui-ux-recommendations-and-rationale-for-key-patterns",
-      "title": "Provide a concise in-repo architecture document describing frontend modules (screens/components/state), backend actor API surface, data model, and calculation rules (weekly/monthly boundaries). Include UI/UX recommendations and rationale for key patterns.",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-change-the-color-used-by-the-dashboard-daily-spending-graph-weekly-bar-chart-to-a-different-chart-color-token-so-it-is-visually-distinct-from-the-other-chart",
-      "title": "Change the color used by the Dashboard 'Daily Spending' graph (weekly bar chart) to a different chart color token so it is visually distinct from the other chart.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-rename-the-app-to-monet-tracker-everywhere-the-app-name-is-presented-to-the-user-header-brand-footer-copyright-settings-about-copy-and-the-html-document-title",
-      "title": "Rename the app to \"Monet Tracker\" everywhere the app name is presented to the user (header brand, footer copyright, Settings/About copy, and the HTML document title).",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-ui-styling-to-look-more-professional-and-cohesive-across-the-app-shell-and-top-level-screens-without-adding-new-features-refine-spacing-typography-hierarchy-and-subtle-surface-styling-to-match-a-polished-finance-tracker-aesthetic",
-      "title": "Update the UI styling to look more professional and cohesive across the app shell and top-level screens (without adding new features): refine spacing, typography hierarchy, and subtle surface styling to match a polished finance-tracker aesthetic.",
-      "reqIds": [
-        "REQ-11"
       ],
       "version": 1
     }
@@ -94,50 +34,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Expense entry: record daily expenses with amount, category, date, optional note (no payment features)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Totals & reporting: compute and display weekly and monthly totals using straightforward math",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Simple graphs dashboard: lightweight charts for spending trends (weekly/monthly)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "UI/UX design system: clean, professional student-friendly look aligned with FlutterFlow patterns",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "App architecture: define clean modular architecture and data model suitable for FlutterFlow build",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Implement expense data model and persistence in the Motoko single-actor backend, supporting CRUD for daily expense records with: amount (number), category (enum or string), date (ISO yyyy-mm-dd), optional note, and createdAt/updatedAt timestamps.",
-      "reqIds": [
-        "REQ-1"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "UI polish: update Daily Spend graph styling (use a different color) and refine overall look to be more professional",
+      "summary": "Provide an Android APK build so the app can be downloaded and installed on an Android phone",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Monet tracker",
+  "projectName": "Provide an Android APK build for the expense tracker",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

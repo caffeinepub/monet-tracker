@@ -26,21 +26,21 @@ export default function AddExpenseScreen() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-4xl font-bold tracking-tight">Add Expense</h1>
-        <p className="text-muted-foreground text-lg">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">Add Expense</h1>
+        <p className="text-muted-foreground mt-1">
           Record a new expense to track your spending
         </p>
       </div>
 
       <Card>
-        <CardHeader className="space-y-2">
-          <CardTitle className="text-2xl">Expense Details</CardTitle>
+        <CardHeader>
+          <CardTitle>Expense Details</CardTitle>
           <CardDescription>
             Enter the details of your expense below
           </CardDescription>
         </CardHeader>
-        <CardContent className="pt-6">
+        <CardContent>
           <ExpenseForm
             onSubmit={handleSubmit}
             isSubmitting={createExpense.isPending}

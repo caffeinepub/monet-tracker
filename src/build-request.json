@@ -1,88 +1,75 @@
 {
   "kind": "build_request",
-  "title": "Rename app to Monet Tracker, update Daily Spending chart color, and polish UI",
+  "title": "Provide an Android APK build for the expense tracker",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-9",
-      "text": "Change the color used by the Dashboard 'Daily Spending' graph (weekly bar chart) to a different chart color token so it is visually distinct from the other chart.",
+      "id": "REQ-1",
+      "text": "Add Android packaging support so the web app can be built and installed as an Android APK (WebView wrapper) using a standard approach (e.g., Capacitor) that works with a React + Vite-style frontend.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "give a different colour to Daily spend graph"
+          "can you make an APK version so that I can easly download in my android phone"
         ]
       },
       "acceptanceCriteria": [
-        "In `frontend/src/components/charts/WeeklySpendBarChart.tsx`, the `<Bar ... />` fill no longer uses `hsl(var(--chart-1))` and instead uses a different existing chart token (e.g., `hsl(var(--chart-2))`).",
-        "The weekly bar chart remains readable in both light and dark themes (bars, axes, tooltip).",
-        "No other charts change color unless necessary to preserve visual contrast."
+        "Repo includes Android packaging configuration and an Android project scaffold suitable for building an APK from the existing frontend.",
+        "A developer can run documented commands to build a debug APK locally (or in CI) without manual Android Studio project setup beyond installing Android SDK prerequisites.",
+        "The Android app loads the deployed Internet Computer frontend URL or the bundled web assets and renders the existing routes (/ dashboard, /add, /expenses, /settings) without blank screens."
       ]
     },
     {
-      "id": "REQ-10",
-      "text": "Rename the app to \"Monet Tracker\" everywhere the app name is presented to the user (header brand, footer copyright, Settings/About copy, and the HTML document title).",
-      "target": "frontend",
+      "id": "REQ-2",
+      "text": "Ensure Internet Identity authentication flow works from the Android APK (including any required WebView allow-list/navigation handling), and document any user steps needed to complete login on Android.",
+      "target": "both",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "give name to this app Monet tracker"
+          "can you make an APK version so that I can easly download in my android phone"
         ]
       },
       "acceptanceCriteria": [
-        "Header brand text in `frontend/src/components/layout/AppShell.tsx` displays \"Monet Tracker\" instead of \"ExpenseTracker\".",
-        "Footer copyright line in `frontend/src/components/layout/AppShell.tsx` references \"Monet Tracker\".",
-        "The Settings \"About\" description in `frontend/src/screens/SettingsScreen.tsx` references \"Monet Tracker\" (and no longer mentions \"ExpenseTracker\").",
-        "`frontend/index.html` `<title>` includes \"Monet Tracker\".",
-        "All user-facing occurrences of the old app name are removed from the frontend."
+        "From the Android APK, a user can initiate login via Internet Identity and return to the app in an authenticated state.",
+        "Expense CRUD operations still work from the Android APK after authentication (add, edit, delete, list).",
+        "Any required Android network/navigation configuration (e.g., allowing identity and canister domains) is included in the repo and described in documentation."
       ]
     },
     {
-      "id": "REQ-11",
-      "text": "Update the UI styling to look more professional and cohesive across the app shell and top-level screens (without adding new features): refine spacing, typography hierarchy, and subtle surface styling to match a polished finance-tracker aesthetic.",
+      "id": "REQ-3",
+      "text": "Add clear developer documentation for producing an installable APK and sharing it (debug build and optional release signing), including prerequisites, build commands, and where the APK artifact is output.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "make it professional to look"
+          "can you make an APK version so that I can easly download in my android phone"
         ]
       },
       "acceptanceCriteria": [
-        "The AppShell header (brand + nav) has improved visual polish (consistent alignment, spacing, and typographic hierarchy) while keeping existing navigation items and routes unchanged.",
-        "Cards and key sections on primary screens (Dashboard, Add Expense, Expense List, Settings) maintain consistent spacing and visual rhythm (e.g., section headers, card padding, grid gaps).",
-        "UI remains accessible: text contrast stays acceptable in both light and dark mode, and interactive elements retain clear hover/focus states.",
-        "No backend changes are introduced as part of this polish task."
+        "Documentation exists in-repo (e.g., README section) with step-by-step instructions to generate an APK.",
+        "Docs specify how to install the APK onto a physical Android device (ADB install) and any Android settings needed (e.g., allow unknown sources).",
+        "Docs explain how the APK points to the app (bundled assets vs remote URL) and how to change the target URL if needed."
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files under `frontend/src/components/ui` (compose existing UI components instead).",
-    "Do not edit immutable paths listed in SYSTEM_CONTEXT (e.g., `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`).",
-    "Keep backend architecture unchanged (single Motoko actor); no backend work is required for these changes."
+    "Do not modify files under frontend/src/components/ui (read-only UI component sources).",
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts / .tsx, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx (immutable paths). Compose around these hooks if changes are needed.",
+    "Backend must remain a single Motoko actor in backend/main.mo; do not introduce additional backend services."
   ],
   "nonGoals": [
-    "Adding new product features (budgets, recurring expenses, exports, payments, notifications).",
-    "Changing expense calculations, filters, or data model.",
-    "Implementing new authentication methods beyond Internet Identity."
+    "Implementing native Android-only features (push notifications, GPS, camera, background sync).",
+    "Publishing to Google Play Store or setting up Play Console listings.",
+    "Adding third-party authentication providers beyond Internet Identity."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

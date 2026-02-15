@@ -14,7 +14,7 @@ export function PrimaryNav() {
   ];
 
   return (
-    <nav className="flex items-center space-x-2">
+    <nav className="flex items-center space-x-1">
       {navItems.map((item) => {
         const Icon = item.icon;
         const isActive = currentPath === item.path;
@@ -24,7 +24,7 @@ export function PrimaryNav() {
             <Button
               variant={isActive ? 'default' : 'ghost'}
               size="sm"
-              className="gap-2 transition-all"
+              className="gap-2"
             >
               <Icon className="h-4 w-4" />
               <span className="hidden sm:inline">{item.label}</span>

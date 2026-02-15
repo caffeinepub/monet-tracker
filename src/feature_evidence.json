@@ -2,10 +2,16 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-change-the-color-used-by-the-dashboard-daily-spending-graph-weekly-bar-chart-to-a-different-chart-color-token-so-it-is-visually-distinct-from-the-other-chart",
-      "featureTitle": "Change the color used by the Dashboard 'Daily Spending' graph (weekly bar chart) to a different chart color token so it is visually distinct from the other chart.",
+      "featureId": "feature-add-android-packaging-support-so-the-web-app-can-be-built-and-installed-as-an-android-apk-webview-wrapper-using-a-standard-approach-e-g-capacitor-that-works-with-a-react-vite-style-frontend",
+      "featureTitle": "Add Android packaging support so the web app can be built and installed as an Android APK (WebView wrapper) using a standard approach (e.g., Capacitor) that works with a React + Vite-style frontend.",
       "files": [
-        "frontend/src/components/charts/WeeklySpendBarChart.tsx"
+        "frontend/android/app/src/main/AndroidManifest.xml",
+        "frontend/android/app/src/main/java/com/expensetracker/app/MainActivity.java",
+        "frontend/android/app/src/main/res/xml/network_security_config.xml",
+        "frontend/android/variables.gradle",
+        "frontend/capacitor.config.ts",
+        "frontend/src/components/layout/AppShell.tsx",
+        "frontend/src/utils/capacitorRuntime.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -15,17 +21,19 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-9"
+        "REQ-1"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-rename-the-app-to-monet-tracker-everywhere-the-app-name-is-presented-to-the-user-header-brand-footer-copyright-settings-about-copy-and-the-html-document-title",
-      "featureTitle": "Rename the app to \"Monet Tracker\" everywhere the app name is presented to the user (header brand, footer copyright, Settings/About copy, and the HTML document title).",
+      "featureId": "feature-ensure-internet-identity-authentication-flow-works-from-the-android-apk-including-any-required-webview-allow-list-navigation-handling-and-document-any-user-steps-needed-to-complete-login-on-android",
+      "featureTitle": "Ensure Internet Identity authentication flow works from the Android APK (including any required WebView allow-list/navigation handling), and document any user steps needed to complete login on Android.",
       "files": [
-        "frontend/index.html",
+        "frontend/README.md",
+        "frontend/android/app/src/main/AndroidManifest.xml",
+        "frontend/android/app/src/main/res/xml/network_security_config.xml",
         "frontend/src/components/layout/AppShell.tsx",
-        "frontend/src/screens/SettingsScreen.tsx"
+        "frontend/src/utils/capacitorAuthBridge.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -35,21 +43,16 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-10"
+        "REQ-2"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-ui-styling-to-look-more-professional-and-cohesive-across-the-app-shell-and-top-level-screens-without-adding-new-features-refine-spacing-typography-hierarchy-and-subtle-surface-styling-to-match-a-polished-finance-tracker-aesthetic",
-      "featureTitle": "Update the UI styling to look more professional and cohesive across the app shell and top-level screens (without adding new features): refine spacing, typography hierarchy, and subtle surface styling to match a polished finance-tracker aesthetic.",
+      "featureId": "feature-add-clear-developer-documentation-for-producing-an-installable-apk-and-sharing-it-debug-build-and-optional-release-signing-including-prerequisites-build-commands-and-where-the-apk-artifact-is-output",
+      "featureTitle": "Add clear developer documentation for producing an installable APK and sharing it (debug build and optional release signing), including prerequisites, build commands, and where the APK artifact is output.",
       "files": [
-        "frontend/src/components/layout/AppShell.tsx",
-        "frontend/src/components/layout/PrimaryNav.tsx",
-        "frontend/src/index.css",
-        "frontend/src/screens/AddExpenseScreen.tsx",
-        "frontend/src/screens/DashboardScreen.tsx",
-        "frontend/src/screens/ExpenseListScreen.tsx",
-        "frontend/src/screens/SettingsScreen.tsx"
+        "frontend/ANDROID_APK.md",
+        "frontend/README.md"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -59,7 +62,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-11"
+        "REQ-3"
       ],
       "confidence": "high"
     }

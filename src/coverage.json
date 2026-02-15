@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-15T15:01:49.030Z",
+  "generatedAt": "2026-02-15T15:51:59.001Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,71 +11,78 @@
     "implemented": 3,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "Rename the app to \"Monet Tracker\" everywhere the app name is presented to the user (header brand, footer copyright, Settings/About copy, and the HTML document title).",
+        "id": "REQ-1",
+        "summary": "Add Android packaging support so the web app can be built and installed as an Android APK (WebView wrapper) using a standard approach (e.g., Capacitor) that works with a React + Vite-style frontend.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/capacitor.config.ts",
+          "frontend/android/app/src/main/AndroidManifest.xml",
+          "frontend/android/app/src/main/java/com/expensetracker/app/MainActivity.java",
+          "frontend/android/app/src/main/res/xml/network_security_config.xml",
+          "frontend/android/variables.gradle",
           "frontend/src/components/layout/AppShell.tsx",
-          "frontend/src/screens/SettingsScreen.tsx",
-          "frontend/index.html"
+          "frontend/src/utils/capacitorRuntime.ts"
         ],
         "matchedFiles": [
+          "frontend/capacitor.config.ts",
+          "frontend/android/app/src/main/AndroidManifest.xml",
+          "frontend/android/app/src/main/java/com/expensetracker/app/MainActivity.java",
+          "frontend/android/app/src/main/res/xml/network_security_config.xml",
+          "frontend/android/variables.gradle",
           "frontend/src/components/layout/AppShell.tsx",
-          "frontend/src/screens/SettingsScreen.tsx",
-          "frontend/index.html"
+          "frontend/src/utils/capacitorRuntime.ts"
         ]
       },
       {
-        "id": "REQ-11",
-        "summary": "Update the UI styling to look more professional and cohesive across the app shell and top-level screens (without adding new features): refine spacing, typography hierarchy, and subtle surface styling to match a polished finance-tracker aesthetic.",
+        "id": "REQ-2",
+        "summary": "Ensure Internet Identity authentication flow works from the Android APK (including any required WebView allow-list/navigation handling), and document any user steps needed to complete login on Android.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/utils/capacitorAuthBridge.ts",
           "frontend/src/components/layout/AppShell.tsx",
-          "frontend/src/components/layout/PrimaryNav.tsx",
-          "frontend/src/screens/DashboardScreen.tsx",
-          "frontend/src/screens/AddExpenseScreen.tsx",
-          "frontend/src/screens/ExpenseListScreen.tsx",
-          "frontend/src/screens/SettingsScreen.tsx",
-          "frontend/src/index.css"
+          "frontend/android/app/src/main/AndroidManifest.xml",
+          "frontend/android/app/src/main/res/xml/network_security_config.xml",
+          "frontend/README.md"
         ],
         "matchedFiles": [
+          "frontend/src/utils/capacitorAuthBridge.ts",
           "frontend/src/components/layout/AppShell.tsx",
-          "frontend/src/components/layout/PrimaryNav.tsx",
-          "frontend/src/screens/DashboardScreen.tsx",
-          "frontend/src/screens/AddExpenseScreen.tsx",
-          "frontend/src/screens/ExpenseListScreen.tsx",
-          "frontend/src/screens/SettingsScreen.tsx",
-          "frontend/src/index.css"
+          "frontend/android/app/src/main/AndroidManifest.xml",
+          "frontend/android/app/src/main/res/xml/network_security_config.xml",
+          "frontend/README.md"
         ]
       },
       {
-        "id": "REQ-9",
-        "summary": "Change the color used by the Dashboard 'Daily Spending' graph (weekly bar chart) to a different chart color token so it is visually distinct from the other chart.",
+        "id": "REQ-3",
+        "summary": "Add clear developer documentation for producing an installable APK and sharing it (debug build and optional release signing), including prerequisites, build commands, and where the APK artifact is output.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/charts/WeeklySpendBarChart.tsx"
+          "frontend/README.md",
+          "frontend/ANDROID_APK.md"
         ],
         "matchedFiles": [
-          "frontend/src/components/charts/WeeklySpendBarChart.tsx"
+          "frontend/README.md",
+          "frontend/ANDROID_APK.md"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.html",
-    "frontend/src/components/charts/WeeklySpendBarChart.tsx",
+    "frontend/ANDROID_APK.md",
+    "frontend/README.md",
+    "frontend/android/app/src/main/AndroidManifest.xml",
+    "frontend/android/app/src/main/java/com/expensetracker/app/MainActivity.java",
+    "frontend/android/app/src/main/res/xml/network_security_config.xml",
+    "frontend/android/variables.gradle",
+    "frontend/capacitor.config.ts",
     "frontend/src/components/layout/AppShell.tsx",
-    "frontend/src/components/layout/PrimaryNav.tsx",
-    "frontend/src/index.css",
-    "frontend/src/screens/AddExpenseScreen.tsx",
-    "frontend/src/screens/DashboardScreen.tsx",
-    "frontend/src/screens/ExpenseListScreen.tsx",
-    "frontend/src/screens/SettingsScreen.tsx",
+    "frontend/src/utils/capacitorAuthBridge.ts",
+    "frontend/src/utils/capacitorRuntime.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

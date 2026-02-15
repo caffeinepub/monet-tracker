@@ -23,21 +23,21 @@ export default function ExpenseListScreen() {
 
   return (
     <div className="space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-4xl font-bold tracking-tight">Expenses</h1>
-        <p className="text-muted-foreground text-lg">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">Expenses</h1>
+        <p className="text-muted-foreground mt-1">
           View and manage all your expenses
         </p>
       </div>
 
       <Card>
-        <CardHeader className="space-y-2">
-          <CardTitle className="text-2xl">Filter Expenses</CardTitle>
+        <CardHeader>
+          <CardTitle>Filter Expenses</CardTitle>
           <CardDescription>
             Narrow down your expenses by time period and category
           </CardDescription>
         </CardHeader>
-        <CardContent className="pt-6">
+        <CardContent>
           <ExpenseFilters filters={filters} onFiltersChange={setFilters} />
         </CardContent>
       </Card>
