@@ -1,0 +1,149 @@
+{
+  "kind": "build_request",
+  "title": "Improve Expense Tracker UI: White/Blue Theme, Rounded Cards, Bold Amounts",
+  "projectName": "Expense Tracker",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Apply a white background (#FFFFFF) as the global app background across all screens, replacing any existing dark or coloured backgrounds.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "Use white background"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All screens (Dashboard, ExpenseList, AddExpense, Calculator, Settings) render with a white background.",
+        "No dark or off-white background colours remain on the main content area."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Use a cohesive blue colour scheme for primary actions, accents, navigation highlights, buttons, progress bars, and chart colours. Use a single primary blue (e.g. #2563EB) and a lighter blue tint (e.g. #EFF6FF) for card headers or highlighted areas.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "blue colour"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Primary action buttons and active navigation items are styled in the primary blue colour.",
+        "Category breakdown progress bars and chart elements use the blue palette.",
+        "No conflicting accent colours remain from the previous theme."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Restyle all cards (TotalsCards, CategoryBreakdown, ExpenseList items, DashboardScreen chart containers) with a border-radius of 12px, a white card background, a subtle light grey or blue-tinted border, and a soft box shadow for depth.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "rounded cards (radius 12)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All card components have border-radius of 12px.",
+        "Cards have a visible but subtle shadow and border to separate them from the white background.",
+        "No square-cornered card containers remain."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Display expense amount values in bold font weight (font-bold or font-semibold) across ExpenseList items, TotalsCards, and the Calculator session list so amounts are visually prominent.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "bold amount text"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Amount values in ExpenseList, TotalsCards, and CalculatorSessionList are rendered in bold or semi-bold weight.",
+        "Amounts are visually distinct from description and category text."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Render date values in a small font size (text-xs or text-sm) and grey colour (e.g. #9CA3AF) across ExpenseList items, CalculatorSessionList, and any other places dates appear, so they are secondary to the amount and description.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "small grey date"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Date text is noticeably smaller than the expense title and amount.",
+        "Date text colour is a muted grey.",
+        "Dates appear consistently styled across all expense-displaying components."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Improve spacing throughout the app: increase padding inside cards (at least 16px), add consistent vertical gaps between list items and cards (at least 12px), and ensure section headings have adequate top/bottom margin. Remove any cramped or inconsistent spacing inherited from the previous theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "clean spacing"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Card internal padding is at least 16px on all sides.",
+        "Vertical gaps between list items are at least 12px.",
+        "No elements appear visually cramped or overlapping."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Update the global CSS variables and Tailwind theme tokens in frontend/src/index.css and frontend/tailwind.config.js to reflect the new white background, blue primary, grey text, and 12px border-radius as defaults so the design is consistent across light mode.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "white background",
+          "blue colour",
+          "rounded cards (radius 12)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "CSS custom properties for background, primary, and radius are updated.",
+        "Tailwind config reflects the updated colour tokens and border-radius.",
+        "All components that use these tokens automatically reflect the new design without per-component overrides."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui.",
+    "Do not change any backend logic or data models.",
+    "Do not alter the app's routing structure or screen layout hierarchy."
+  ],
+  "nonGoals": [
+    "Adding new features or screens.",
+    "Changing dark mode styles (focus is on light/white mode only).",
+    "Modifying backend Motoko code.",
+    "Changing navigation structure or screen flow."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

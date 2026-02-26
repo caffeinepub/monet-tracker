@@ -1,0 +1,158 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-26T12:48:56.044Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 7,
+    "implemented": 7,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Apply a white background (#FFFFFF) as the global app background across all screens, replacing any existing dark or coloured backgrounds.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/layout/AppShell.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/components/layout/AppShell.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Use a cohesive blue colour scheme for primary actions, accents, navigation highlights, buttons, progress bars, and chart colours. Use a single primary blue (e.g. #2563EB) and a lighter blue tint (e.g. #EFF6FF) for card headers or highlighted areas.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/PrimaryNav.tsx",
+          "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+          "frontend/src/components/charts/MonthlySpendTrendChart.tsx",
+          "frontend/src/components/charts/WeeklySpendBarChart.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/PrimaryNav.tsx",
+          "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+          "frontend/src/components/charts/MonthlySpendTrendChart.tsx",
+          "frontend/src/components/charts/WeeklySpendBarChart.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Restyle all cards (TotalsCards, CategoryBreakdown, ExpenseList items, DashboardScreen chart containers) with a border-radius of 12px, a white card background, a subtle light grey or blue-tinted border, and a soft box shadow for depth.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/dashboard/TotalsCards.tsx",
+          "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+          "frontend/src/components/expenses/ExpenseList.tsx",
+          "frontend/src/screens/DashboardScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/dashboard/TotalsCards.tsx",
+          "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+          "frontend/src/components/expenses/ExpenseList.tsx",
+          "frontend/src/screens/DashboardScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Display expense amount values in bold font weight (font-bold or font-semibold) across ExpenseList items, TotalsCards, and the Calculator session list so amounts are visually prominent.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/expenses/ExpenseList.tsx",
+          "frontend/src/components/dashboard/TotalsCards.tsx",
+          "frontend/src/components/calculator/CalculatorSessionList.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/expenses/ExpenseList.tsx",
+          "frontend/src/components/dashboard/TotalsCards.tsx",
+          "frontend/src/components/calculator/CalculatorSessionList.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Render date values in a small font size (text-xs or text-sm) and grey colour (e.g. #9CA3AF) across ExpenseList items, CalculatorSessionList, and any other places dates appear, so they are secondary to the amount and description.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/expenses/ExpenseList.tsx",
+          "frontend/src/components/calculator/CalculatorSessionList.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/expenses/ExpenseList.tsx",
+          "frontend/src/components/calculator/CalculatorSessionList.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Improve spacing throughout the app: increase padding inside cards (at least 16px), add consistent vertical gaps between list items and cards (at least 12px), and ensure section headings have adequate top/bottom margin. Remove any cramped or inconsistent spacing inherited from the previous theme.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/dashboard/TotalsCards.tsx",
+          "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+          "frontend/src/components/expenses/ExpenseList.tsx",
+          "frontend/src/screens/DashboardScreen.tsx",
+          "frontend/src/screens/ExpenseListScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/dashboard/TotalsCards.tsx",
+          "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+          "frontend/src/components/expenses/ExpenseList.tsx",
+          "frontend/src/screens/DashboardScreen.tsx",
+          "frontend/src/screens/ExpenseListScreen.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Update the global CSS variables and Tailwind theme tokens in frontend/src/index.css and frontend/tailwind.config.js to reflect the new white background, blue primary, grey text, and 12px border-radius as defaults so the design is consistent across light mode.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/calculator/CalculatorSessionList.tsx",
+    "frontend/src/components/charts/MonthlySpendTrendChart.tsx",
+    "frontend/src/components/charts/WeeklySpendBarChart.tsx",
+    "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+    "frontend/src/components/dashboard/TotalsCards.tsx",
+    "frontend/src/components/expenses/ExpenseList.tsx",
+    "frontend/src/components/layout/AppShell.tsx",
+    "frontend/src/components/layout/PrimaryNav.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/index.css",
+    "frontend/src/screens/AddExpenseScreen.tsx",
+    "frontend/src/screens/CalculatorScreen.tsx",
+    "frontend/src/screens/DashboardScreen.tsx",
+    "frontend/src/screens/ExpenseListScreen.tsx",
+    "frontend/src/screens/SettingsScreen.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

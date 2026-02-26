@@ -1,0 +1,212 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Improve Expense Tracker UI: White/Blue Theme, Rounded Cards, Bold Amounts",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Apply white background (#FFFFFF) as the global app background across all screens",
+      "acceptanceCriteria": [
+        "All screens (Dashboard, ExpenseList, AddExpense, Calculator, Settings) render with a white background.",
+        "No dark or off-white background colours remain on the main content area."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update the root CSS custom properties to set --background to white (#FFFFFF or hsl(0 0% 100%)) for light mode, ensuring all screens render with a clean white background."
+        },
+        {
+          "path": "frontend/src/components/layout/AppShell.tsx",
+          "operation": "modify",
+          "description": "Review and ensure the main content wrapper uses bg-background so it inherits the white background from the global theme token."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Use a cohesive blue colour scheme for primary actions, accents, navigation highlights, buttons, progress bars, and chart colours",
+      "acceptanceCriteria": [
+        "Primary action buttons and active navigation items are styled in the primary blue colour.",
+        "Category breakdown progress bars and chart elements use the blue palette.",
+        "No conflicting accent colours remain from the previous theme."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update --primary CSS custom property to use a primary blue (e.g. hsl(217 91% 60%) for #2563EB) and --primary-foreground for text on blue. Add a --blue-tint variable (e.g. hsl(214 100% 97%) for #EFF6FF) for lighter accents if needed."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend the theme colors to include primary blue tokens (e.g. primary: 'hsl(var(--primary))') and ensure buttons and active states reference these tokens consistently."
+        },
+        {
+          "path": "frontend/src/components/layout/PrimaryNav.tsx",
+          "operation": "modify",
+          "description": "Update active navigation item styling to use the new primary blue colour (bg-primary text-primary-foreground or similar) so active routes are highlighted in blue."
+        },
+        {
+          "path": "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+          "operation": "modify",
+          "description": "Update progress bar styling to use the primary blue colour (bg-primary or bg-blue-600) so category breakdown bars match the blue theme."
+        },
+        {
+          "path": "frontend/src/components/charts/MonthlySpendTrendChart.tsx",
+          "operation": "modify",
+          "description": "Update the Recharts Line stroke colour to use the primary blue (e.g. #2563EB) so the monthly trend chart aligns with the blue palette."
+        },
+        {
+          "path": "frontend/src/components/charts/WeeklySpendBarChart.tsx",
+          "operation": "modify",
+          "description": "Update the Recharts Bar fill colour to use the primary blue (e.g. #2563EB) so the weekly bar chart aligns with the blue palette."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Restyle all cards with 12px border-radius, white background, subtle border, and soft box shadow",
+      "acceptanceCriteria": [
+        "All card components have border-radius of 12px.",
+        "Cards have a visible but subtle shadow and border to separate them from the white background.",
+        "No square-cornered card containers remain."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update --radius CSS custom property to 0.75rem (12px) so all components using the radius token inherit the rounded corners."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Ensure borderRadius.DEFAULT or borderRadius.lg is set to 12px (0.75rem) and that boxShadow includes a subtle shadow (e.g. shadow-sm or a custom token) for card depth."
+        },
+        {
+          "path": "frontend/src/components/dashboard/TotalsCards.tsx",
+          "operation": "modify",
+          "description": "Update card wrapper styling to use rounded-xl (12px), border border-gray-200 or border-blue-100, and shadow-sm for a subtle depth effect."
+        },
+        {
+          "path": "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+          "operation": "modify",
+          "description": "Update the card container styling to use rounded-xl (12px), border border-gray-200 or border-blue-100, and shadow-sm so category breakdown cards match the design."
+        },
+        {
+          "path": "frontend/src/components/expenses/ExpenseList.tsx",
+          "operation": "modify",
+          "description": "Update individual expense list item styling to use rounded-xl (12px), border border-gray-200, and shadow-sm so each expense card is visually separated with rounded corners and subtle depth."
+        },
+        {
+          "path": "frontend/src/screens/DashboardScreen.tsx",
+          "operation": "modify",
+          "description": "Update chart container styling (if any wrapper div) to use rounded-xl (12px), border border-gray-200, and shadow-sm so chart containers match the card styling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Display expense amount values in bold font weight across ExpenseList, TotalsCards, and Calculator session list",
+      "acceptanceCriteria": [
+        "Amount values in ExpenseList, TotalsCards, and CalculatorSessionList are rendered in bold or semi-bold weight.",
+        "Amounts are visually distinct from description and category text."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/expenses/ExpenseList.tsx",
+          "operation": "modify",
+          "description": "Update the amount display element to include font-bold or font-semibold class so expense amounts are visually prominent in the list."
+        },
+        {
+          "path": "frontend/src/components/dashboard/TotalsCards.tsx",
+          "operation": "modify",
+          "description": "Update the total and average amount text elements to include font-bold or font-semibold class so key figures stand out in the totals cards."
+        },
+        {
+          "path": "frontend/src/components/calculator/CalculatorSessionList.tsx",
+          "operation": "modify",
+          "description": "Update the amount display in session list items to include font-bold or font-semibold class so session entry amounts are bold and visually distinct."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Render date values in small font size (text-xs or text-sm) and grey colour (e.g. #9CA3AF)",
+      "acceptanceCriteria": [
+        "Date text is noticeably smaller than the expense title and amount.",
+        "Date text colour is a muted grey.",
+        "Dates appear consistently styled across all expense-displaying components."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/expenses/ExpenseList.tsx",
+          "operation": "modify",
+          "description": "Update the date display element to include text-xs or text-sm and text-gray-500 (or text-muted-foreground) so dates are smaller and muted relative to amounts and titles."
+        },
+        {
+          "path": "frontend/src/components/calculator/CalculatorSessionList.tsx",
+          "operation": "modify",
+          "description": "Update the date display in session list items to include text-xs or text-sm and text-gray-500 so dates are consistently small and grey across all lists."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Improve spacing: increase card padding to at least 16px, add consistent vertical gaps of at least 12px between items, and ensure adequate margins for headings",
+      "acceptanceCriteria": [
+        "Card internal padding is at least 16px on all sides.",
+        "Vertical gaps between list items are at least 12px.",
+        "No elements appear visually cramped or overlapping."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/dashboard/TotalsCards.tsx",
+          "operation": "modify",
+          "description": "Update card padding to at least p-4 (16px) and ensure vertical spacing between cards uses gap-4 or space-y-4 (16px) for clean separation."
+        },
+        {
+          "path": "frontend/src/components/dashboard/CategoryBreakdown.tsx",
+          "operation": "modify",
+          "description": "Update card padding to at least p-4 (16px) and ensure vertical spacing between category items uses gap-3 or space-y-3 (12px) for consistent breathing room."
+        },
+        {
+          "path": "frontend/src/components/expenses/ExpenseList.tsx",
+          "operation": "modify",
+          "description": "Update list item padding to at least p-4 (16px) and ensure vertical gaps between items use gap-3 or space-y-3 (12px) so the list feels spacious and uncluttered."
+        },
+        {
+          "path": "frontend/src/screens/DashboardScreen.tsx",
+          "operation": "modify",
+          "description": "Review and ensure section headings have adequate top/bottom margin (e.g. mb-4 mt-6) and that chart/card containers use gap-4 or space-y-4 for vertical separation."
+        },
+        {
+          "path": "frontend/src/screens/ExpenseListScreen.tsx",
+          "operation": "modify",
+          "description": "Review and ensure section headings and filter controls have adequate spacing (e.g. mb-4) and that the ExpenseList component is spaced consistently from other content."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Update global CSS variables and Tailwind theme tokens to reflect white background, blue primary, grey text, and 12px border-radius",
+      "acceptanceCriteria": [
+        "CSS custom properties for background, primary, and radius are updated.",
+        "Tailwind config reflects the updated colour tokens and border-radius.",
+        "All components that use these tokens automatically reflect the new design without per-component overrides."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update CSS custom properties: set --background to white (hsl(0 0% 100%)), --primary to blue (hsl(217 91% 60%)), --muted-foreground or --foreground-secondary to grey (hsl(215 14% 34%)), and --radius to 0.75rem (12px) so all components inherit the new design tokens."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Update the theme.extend.colors to reference the updated CSS variables for background, primary, and text colors, and ensure borderRadius tokens (e.g. DEFAULT, lg) are set to 12px (0.75rem) so Tailwind classes reflect the new design automatically."
+        }
+      ]
+    }
+  ]
+}
