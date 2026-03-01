@@ -8,6 +8,7 @@ import { DeleteExpenseConfirm } from './DeleteExpenseConfirm';
 import { formatCurrency, formatDate } from '@/utils/expenseMapping';
 import type { Expense } from '@/backend';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useCurrency } from '@/hooks/useCurrency';
 
 type ExpenseListProps = {
   expenses: Expense[];
@@ -17,6 +18,7 @@ type ExpenseListProps = {
 export function ExpenseList({ expenses, isLoading }: ExpenseListProps) {
   const [editingExpense, setEditingExpense] = useState<Expense | null>(null);
   const [deletingExpense, setDeletingExpense] = useState<Expense | null>(null);
+  const { currency } = useCurrency();
 
   const sortedExpenses = [...expenses].sort((a, b) => {
     if (a.date !== b.date) {
@@ -81,7 +83,7 @@ export function ExpenseList({ expenses, isLoading }: ExpenseListProps) {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="font-bold text-foreground text-base">
-                      {formatCurrency(expense.amount)}
+                      {formatCurrency(expense.amount, currency)}
                     </span>
                     {expense.note && (
                       <span className="text-sm text-muted-foreground truncate max-w-xs">

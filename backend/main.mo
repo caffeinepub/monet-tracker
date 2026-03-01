@@ -1,14 +1,22 @@
+import Runtime "mo:core/Runtime";
 import Map "mo:core/Map";
 import Array "mo:core/Array";
 import Set "mo:core/Set";
 import Text "mo:core/Text";
-import Runtime "mo:core/Runtime";
 import Nat "mo:core/Nat";
 import Iter "mo:core/Iter";
 import Time "mo:core/Time";
 import Order "mo:core/Order";
+import Migration "migration";
 
+(with migration = Migration.run)
 actor {
+  type Currency = {
+    #USD;
+    #INR;
+    #JPY;
+  };
+
   type Category = Text;
 
   type Expense = {
@@ -36,8 +44,9 @@ actor {
   };
 
   let expenses = Map.empty<Text, Expense>();
+  var preferredCurrency : Currency = #USD;
 
-  public shared ({ caller }) func addExpense(id : Text, amount : Nat, category : Category, date : Text, note : ?Text) : async Expense {
+  public func addExpense(id : Text, amount : Nat, category : Category, date : Text, note : ?Text) : async Expense {
     let currentTime = Time.now();
     let expense : Expense = {
       id;
@@ -52,7 +61,7 @@ actor {
     expense;
   };
 
-  public shared ({ caller }) func updateExpense(id : Text, amount : Nat, category : Category, date : Text, note : ?Text) : async Expense {
+  public func updateExpense(id : Text, amount : Nat, category : Category, date : Text, note : ?Text) : async Expense {
     let existingExpense = switch (expenses.get(id)) {
       case (null) { Runtime.trap("Expense not found") };
       case (?expense) { expense };
@@ -71,37 +80,37 @@ actor {
     updatedExpense;
   };
 
-  public shared ({ caller }) func deleteExpense(id : Text) : async () {
+  public func deleteExpense(id : Text) : async () {
     if (not expenses.containsKey(id)) {
       Runtime.trap("Expense not found");
     };
     expenses.remove(id);
   };
 
-  public query ({ caller }) func getExpense(id : Text) : async Expense {
+  public query func getExpense(id : Text) : async Expense {
     switch (expenses.get(id)) {
       case (null) { Runtime.trap("Expense not found") };
       case (?expense) { expense };
     };
   };
 
-  public query ({ caller }) func getAllExpenses() : async [Expense] {
+  public query func getAllExpenses() : async [Expense] {
     expenses.values().toArray();
   };
 
-  public query ({ caller }) func getExpensesByCategory(category : Category) : async [Expense] {
+  public query func getExpensesByCategory(category : Category) : async [Expense] {
     expenses.values().toArray().filter(
       func(expense) { expense.category == category }
     );
   };
 
-  public query ({ caller }) func getExpensesByDate(date : Text) : async [Expense] {
+  public query func getExpensesByDate(date : Text) : async [Expense] {
     expenses.values().toArray().filter(
       func(expense) { expense.date == date }
     );
   };
 
-  public query ({ caller }) func getExpensesByDateRange(startDate : Text, endDate : Text) : async [Expense] {
+  public query func getExpensesByDateRange(startDate : Text, endDate : Text) : async [Expense] {
     expenses.values().toArray().filter(
       func(expense) {
         (expense.date >= startDate) and (expense.date <= endDate)
@@ -109,7 +118,7 @@ actor {
     );
   };
 
-  public query ({ caller }) func getTotalByCategory(category : Category) : async Nat {
+  public query func getTotalByCategory(category : Category) : async Nat {
     let expensesByCategory = expenses.values().toArray().filter(
       func(expense) { expense.category == category }
     );
@@ -125,7 +134,7 @@ actor {
     total : Nat;
   };
 
-  public query ({ caller }) func getCategoryTotals() : async [CategoryTotal] {
+  public query func getCategoryTotals() : async [CategoryTotal] {
     let allExpenses = expenses.values().toArray();
 
     let seenCategories = Set.empty<Text>();
@@ -142,12 +151,20 @@ actor {
     filteredExpenses.map(func(exp) { { category = exp.category; total = 0 } });
   };
 
-  public query ({ caller }) func getTotalExpenses() : async Nat {
+  public query func getTotalExpenses() : async Nat {
     let expensesArray = expenses.values().toArray();
     let sum = expensesArray.foldLeft(
       0,
       func(acc, expense) { acc + expense.amount },
     );
     sum;
+  };
+
+  public query ({ caller }) func getCurrencyPreference() : async Currency {
+    preferredCurrency;
+  };
+
+  public func setCurrencyPreference(currency : Currency) : async () {
+    preferredCurrency := currency;
   };
 };

@@ -1,28 +1,41 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T12:48:56.040Z",
-  "summary": "The diff implements all seven requirements comprehensively. White backgrounds, blue colour scheme, rounded cards (rounded-xl / 12px), bold amounts, small grey dates, improved spacing, and updated CSS variables plus Tailwind config are all present across the modified files. No significant missing requirements or hallucinated features were found.",
-  "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.93,
+  "generatedAt": "2026-03-01T05:50:19.673Z",
+  "summary": "The diff implements all three requirements: backend currency preference (REQ-1), Settings screen currency selector (REQ-2), and app-wide currency formatting updates (REQ-3). Coverage is thorough across backend and frontend. One minor gap exists: AddExpense screen currency formatting is not explicitly shown in the diff, though expenseMapping.ts is updated.",
+  "missing_requirements": [
+    {
+      "requirement": "Update currency formatting in AddExpense screen",
+      "reason": "REQ-3 explicitly lists AddExpenseScreen as one of the components that must use the selected currency symbol/locale formatting. The diff shows updates to ExpenseList, TotalsCards, CategoryBreakdown, CalculatorScreen, and expenseMapping.ts, but AddExpenseScreen.tsx is only described as navigating to /expenses on success with no currency formatting update evidenced.",
+      "evidence": [
+        "frontend/src/screens/AddExpenseScreen.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Migration module (backend/migration.mo) for upgrading existing actor state",
+      "reason": "The build request only asked for a currency preference field with get/set methods. A separate migration module was not requested but was added to handle schema upgrades from old to new actor state.",
+      "evidence": [
+        "backend/migration.mo"
+      ]
+    }
+  ],
+  "confidence": 0.82,
   "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "frontend-file-summaries.txt",
     "frontend/src/components/calculator/CalculatorSessionList.tsx",
-    "frontend/src/components/charts/MonthlySpendTrendChart.tsx",
-    "frontend/src/components/charts/WeeklySpendBarChart.tsx",
     "frontend/src/components/dashboard/CategoryBreakdown.tsx",
     "frontend/src/components/dashboard/TotalsCards.tsx",
     "frontend/src/components/expenses/ExpenseList.tsx",
-    "frontend/src/components/layout/AppShell.tsx",
-    "frontend/src/components/layout/PrimaryNav.tsx",
-    "frontend/src/index.css",
-    "frontend/src/screens/AddExpenseScreen.tsx",
+    "frontend/src/constants/currencies.ts",
+    "frontend/src/hooks/useCurrency.ts",
     "frontend/src/screens/CalculatorScreen.tsx",
-    "frontend/src/screens/DashboardScreen.tsx",
-    "frontend/src/screens/ExpenseListScreen.tsx",
     "frontend/src/screens/SettingsScreen.tsx",
-    "frontend/tailwind.config.js",
+    "frontend/src/utils/expenseMapping.ts",
     "project_state.json"
   ]
 }

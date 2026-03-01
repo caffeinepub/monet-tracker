@@ -2,34 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-apply-a-white-background-ffffff-as-the-global-app-background-across-all-screens-replacing-any-existing-dark-or-coloured-backgrounds",
-      "featureTitle": "Apply a white background (#FFFFFF) as the global app background across all screens, replacing any existing dark or coloured backgrounds.",
+      "featureId": "feature-add-a-currency-selector-control-in-the-settings-screen-settingsscreen-tsx-that-lets-users-choose-between-us-dollar-usd-indian-rupee-inr-and-japanese-yen-jpy-persist-the-selection-to-the-backend-and-also-store-it-locally-so-it-survives-page-refreshes",
+      "featureTitle": "Add a currency selector control in the Settings screen (SettingsScreen.tsx) that lets users choose between US Dollar (USD / $), Indian Rupee (INR / ₹), and Japanese Yen (JPY / ¥). Persist the selection to the backend and also store it locally so it survives page refreshes.",
       "files": [
-        "frontend/src/components/layout/AppShell.tsx",
-        "frontend/src/index.css"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-use-a-cohesive-blue-colour-scheme-for-primary-actions-accents-navigation-highlights-buttons-progress-bars-and-chart-colours-use-a-single-primary-blue-e-g-2563eb-and-a-lighter-blue-tint-e-g-eff6ff-for-card-headers-or-highlighted-areas",
-      "featureTitle": "Use a cohesive blue colour scheme for primary actions, accents, navigation highlights, buttons, progress bars, and chart colours. Use a single primary blue (e.g. #2563EB) and a lighter blue tint (e.g. #EFF6FF) for card headers or highlighted areas.",
-      "files": [
-        "frontend/src/components/charts/MonthlySpendTrendChart.tsx",
-        "frontend/src/components/charts/WeeklySpendBarChart.tsx",
-        "frontend/src/components/dashboard/CategoryBreakdown.tsx",
-        "frontend/src/components/layout/PrimaryNav.tsx",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
+        "frontend/src/constants/currencies.ts",
+        "frontend/src/hooks/useCurrency.ts",
+        "frontend/src/screens/SettingsScreen.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -44,15 +22,15 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-restyle-all-cards-totalscards-categorybreakdown-expenselist-items-dashboardscreen-chart-containers-with-a-border-radius-of-12px-a-white-card-background-a-subtle-light-grey-or-blue-tinted-border-and-a-soft-box-shadow-for-depth",
-      "featureTitle": "Restyle all cards (TotalsCards, CategoryBreakdown, ExpenseList items, DashboardScreen chart containers) with a border-radius of 12px, a white card background, a subtle light grey or blue-tinted border, and a soft box shadow for depth.",
+      "featureId": "feature-update-all-currency-formatting-across-the-app-expense-amounts-in-expenselist-totalscards-dashboard-calculator-addexpense-and-expensemapping-ts-utilities-to-use-the-user-s-selected-currency-symbol-and-locale-formatting-en-us-for-usd-en-in-for-inr-ja-jp-for-jpy",
+      "featureTitle": "Update all currency formatting across the app (expense amounts in ExpenseList, TotalsCards, Dashboard, Calculator, AddExpense, and expenseMapping.ts utilities) to use the user's selected currency symbol and locale formatting (en-US for USD, en-IN for INR, ja-JP for JPY).",
       "files": [
+        "frontend/src/components/calculator/CalculatorSessionList.tsx",
         "frontend/src/components/dashboard/CategoryBreakdown.tsx",
         "frontend/src/components/dashboard/TotalsCards.tsx",
         "frontend/src/components/expenses/ExpenseList.tsx",
-        "frontend/src/index.css",
-        "frontend/src/screens/DashboardScreen.tsx",
-        "frontend/tailwind.config.js"
+        "frontend/src/screens/CalculatorScreen.tsx",
+        "frontend/src/utils/expenseMapping.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -63,86 +41,6 @@
       ],
       "testIds": [
         "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-display-expense-amount-values-in-bold-font-weight-font-bold-or-font-semibold-across-expenselist-items-totalscards-and-the-calculator-session-list-so-amounts-are-visually-prominent",
-      "featureTitle": "Display expense amount values in bold font weight (font-bold or font-semibold) across ExpenseList items, TotalsCards, and the Calculator session list so amounts are visually prominent.",
-      "files": [
-        "frontend/src/components/calculator/CalculatorSessionList.tsx",
-        "frontend/src/components/dashboard/TotalsCards.tsx",
-        "frontend/src/components/expenses/ExpenseList.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-render-date-values-in-a-small-font-size-text-xs-or-text-sm-and-grey-colour-e-g-9ca3af-across-expenselist-items-calculatorsessionlist-and-any-other-places-dates-appear-so-they-are-secondary-to-the-amount-and-description",
-      "featureTitle": "Render date values in a small font size (text-xs or text-sm) and grey colour (e.g. #9CA3AF) across ExpenseList items, CalculatorSessionList, and any other places dates appear, so they are secondary to the amount and description.",
-      "files": [
-        "frontend/src/components/calculator/CalculatorSessionList.tsx",
-        "frontend/src/components/expenses/ExpenseList.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-improve-spacing-throughout-the-app-increase-padding-inside-cards-at-least-16px-add-consistent-vertical-gaps-between-list-items-and-cards-at-least-12px-and-ensure-section-headings-have-adequate-top-bottom-margin-remove-any-cramped-or-inconsistent-spacing-inherited-from-the-previous-theme",
-      "featureTitle": "Improve spacing throughout the app: increase padding inside cards (at least 16px), add consistent vertical gaps between list items and cards (at least 12px), and ensure section headings have adequate top/bottom margin. Remove any cramped or inconsistent spacing inherited from the previous theme.",
-      "files": [
-        "frontend/src/components/dashboard/CategoryBreakdown.tsx",
-        "frontend/src/components/dashboard/TotalsCards.tsx",
-        "frontend/src/components/expenses/ExpenseList.tsx",
-        "frontend/src/screens/DashboardScreen.tsx",
-        "frontend/src/screens/ExpenseListScreen.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-global-css-variables-and-tailwind-theme-tokens-in-frontend-src-index-css-and-frontend-tailwind-config-js-to-reflect-the-new-white-background-blue-primary-grey-text-and-12px-border-radius-as-defaults-so-the-design-is-consistent-across-light-mode",
-      "featureTitle": "Update the global CSS variables and Tailwind theme tokens in frontend/src/index.css and frontend/tailwind.config.js to reflect the new white background, blue primary, grey text, and 12px border-radius as defaults so the design is consistent across light mode.",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-7"
       ],
       "confidence": "high"
     }

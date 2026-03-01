@@ -4,12 +4,11 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { ExpenseForm } from './ExpenseForm';
-import { useUpdateExpense } from '@/hooks/useExpenses';
-import { toast } from 'sonner';
-import type { Expense } from '@/backend';
-import { toUIAmount } from '@/utils/expenseMapping';
+} from "@/components/ui/dialog";
+import { ExpenseForm } from "./ExpenseForm";
+import { useUpdateExpense } from "@/hooks/useExpenses";
+import type { Expense } from "@/backend";
+import { fromBackendAmount } from "@/utils/expenseMapping";
 
 type EditExpenseDialogProps = {
   expense: Expense;
@@ -17,7 +16,11 @@ type EditExpenseDialogProps = {
   onOpenChange: (open: boolean) => void;
 };
 
-export function EditExpenseDialog({ expense, open, onOpenChange }: EditExpenseDialogProps) {
+export function EditExpenseDialog({
+  expense,
+  open,
+  onOpenChange,
+}: EditExpenseDialogProps) {
   const updateExpense = useUpdateExpense();
 
   const handleSubmit = async (data: {
@@ -31,11 +34,9 @@ export function EditExpenseDialog({ expense, open, onOpenChange }: EditExpenseDi
         id: expense.id,
         ...data,
       });
-      toast.success('Expense updated successfully!');
       onOpenChange(false);
-    } catch (error) {
-      toast.error('Failed to update expense. Please try again.');
-      console.error('Error updating expense:', error);
+    } catch {
+      // Error toast is handled in the mutation's onError callback
     }
   };
 
@@ -49,14 +50,14 @@ export function EditExpenseDialog({ expense, open, onOpenChange }: EditExpenseDi
           </DialogDescription>
         </DialogHeader>
         <ExpenseForm
-          initialData={{
-            amount: toUIAmount(expense.amount),
+          defaultValues={{
+            amount: fromBackendAmount(expense.amount),
             category: expense.category,
             date: expense.date,
-            note: expense.note,
+            note: expense.note ?? undefined,
           }}
           onSubmit={handleSubmit}
-          isSubmitting={updateExpense.isPending}
+          isPending={updateExpense.isPending}
           submitLabel="Update Expense"
         />
       </DialogContent>

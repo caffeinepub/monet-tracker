@@ -104,20 +104,27 @@ export interface Expense {
     amount: bigint;
 }
 export type Category = string;
+export enum Currency {
+    INR = "INR",
+    JPY = "JPY",
+    USD = "USD"
+}
 export interface backendInterface {
     addExpense(id: string, amount: bigint, category: Category, date: string, note: string | null): Promise<Expense>;
     deleteExpense(id: string): Promise<void>;
     getAllExpenses(): Promise<Array<Expense>>;
     getCategoryTotals(): Promise<Array<CategoryTotal>>;
+    getCurrencyPreference(): Promise<Currency>;
     getExpense(id: string): Promise<Expense>;
     getExpensesByCategory(category: Category): Promise<Array<Expense>>;
     getExpensesByDate(date: string): Promise<Array<Expense>>;
     getExpensesByDateRange(startDate: string, endDate: string): Promise<Array<Expense>>;
     getTotalByCategory(category: Category): Promise<bigint>;
     getTotalExpenses(): Promise<bigint>;
+    setCurrencyPreference(currency: Currency): Promise<void>;
     updateExpense(id: string, amount: bigint, category: Category, date: string, note: string | null): Promise<Expense>;
 }
-import type { Category as _Category, Expense as _Expense, Time as _Time } from "./declarations/backend.did.d.ts";
+import type { Category as _Category, Currency as _Currency, Expense as _Expense, Time as _Time } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
     async addExpense(arg0: string, arg1: bigint, arg2: Category, arg3: string, arg4: string | null): Promise<Expense> {
@@ -174,6 +181,20 @@ export class Backend implements backendInterface {
         } else {
             const result = await this.actor.getCategoryTotals();
             return result;
+        }
+    }
+    async getCurrencyPreference(): Promise<Currency> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getCurrencyPreference();
+                return from_candid_Currency_n6(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getCurrencyPreference();
+            return from_candid_Currency_n6(this._uploadFile, this._downloadFile, result);
         }
     }
     async getExpense(arg0: string): Promise<Expense> {
@@ -260,6 +281,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async setCurrencyPreference(arg0: Currency): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.setCurrencyPreference(to_candid_Currency_n8(this._uploadFile, this._downloadFile, arg0));
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.setCurrencyPreference(to_candid_Currency_n8(this._uploadFile, this._downloadFile, arg0));
+            return result;
+        }
+    }
     async updateExpense(arg0: string, arg1: bigint, arg2: Category, arg3: string, arg4: string | null): Promise<Expense> {
         if (this.processError) {
             try {
@@ -274,6 +309,9 @@ export class Backend implements backendInterface {
             return from_candid_Expense_n2(this._uploadFile, this._downloadFile, result);
         }
     }
+}
+function from_candid_Currency_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Currency): Currency {
+    return from_candid_variant_n7(_uploadFile, _downloadFile, value);
 }
 function from_candid_Expense_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Expense): Expense {
     return from_candid_record_n3(_uploadFile, _downloadFile, value);
@@ -308,11 +346,38 @@ function from_candid_record_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint
         amount: value.amount
     };
 }
+function from_candid_variant_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    INR: null;
+} | {
+    JPY: null;
+} | {
+    USD: null;
+}): Currency {
+    return "INR" in value ? Currency.INR : "JPY" in value ? Currency.JPY : "USD" in value ? Currency.USD : value;
+}
 function from_candid_vec_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Expense>): Array<Expense> {
     return value.map((x)=>from_candid_Expense_n2(_uploadFile, _downloadFile, x));
 }
+function to_candid_Currency_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Currency): _Currency {
+    return to_candid_variant_n9(_uploadFile, _downloadFile, value);
+}
 function to_candid_opt_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: string | null): [] | [string] {
     return value === null ? candid_none() : candid_some(value);
+}
+function to_candid_variant_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Currency): {
+    INR: null;
+} | {
+    JPY: null;
+} | {
+    USD: null;
+} {
+    return value == Currency.INR ? {
+        INR: null
+    } : value == Currency.JPY ? {
+        JPY: null
+    } : value == Currency.USD ? {
+        USD: null
+    } : value;
 }
 export interface CreateActorOptions {
     agent?: Agent;

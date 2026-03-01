@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { formatCurrency, formatDate } from '@/utils/expenseMapping';
 import { Trash2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import type { CurrencyCode } from '@/constants/currencies';
 
 type SessionEntry = {
   id: string;
@@ -14,9 +15,10 @@ type SessionEntry = {
 type CalculatorSessionListProps = {
   entries: SessionEntry[];
   onRemoveEntry: (id: string) => void;
+  currency?: CurrencyCode;
 };
 
-export function CalculatorSessionList({ entries, onRemoveEntry }: CalculatorSessionListProps) {
+export function CalculatorSessionList({ entries, onRemoveEntry, currency = 'USD' }: CalculatorSessionListProps) {
   if (entries.length === 0) {
     return (
       <div className="text-center py-8 text-muted-foreground">
@@ -39,7 +41,7 @@ export function CalculatorSessionList({ entries, onRemoveEntry }: CalculatorSess
               </Badge>
             </div>
             <div className="font-bold text-foreground text-base">
-              {formatCurrency(entry.amount)}
+              {formatCurrency(entry.amount, currency)}
             </div>
             <div className="text-xs text-muted-foreground mt-0.5">{formatDate(entry.date)}</div>
             {entry.note && (

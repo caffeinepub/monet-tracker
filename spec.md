@@ -1,15 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Refresh the Expense Tracker UI with a clean white/blue theme, rounded cards, bold amounts, and improved spacing.
+**Goal:** Add a currency selection option in the Settings screen, allowing users to choose between USD ($), INR (₹), and JPY (¥), with the selected currency applied to all monetary displays across the app.
 
 **Planned changes:**
-- Set white (#FFFFFF) as the global app background across all screens
-- Apply a cohesive blue color scheme (#2563EB primary, #EFF6FF tint) to buttons, navigation highlights, progress bars, and charts
-- Restyle all cards with 12px border-radius, white background, subtle border, and soft box shadow
-- Display expense amounts in bold/semi-bold font weight in ExpenseList, TotalsCards, and Calculator session list
-- Render date values in small font size and muted grey color (#9CA3AF) across all expense-displaying components
-- Increase card internal padding to at least 16px and vertical gaps between list items to at least 12px
-- Update CSS variables and Tailwind config tokens to reflect the new white background, blue primary, grey text, and 12px border-radius defaults
+- Add a `currency` preference field to the backend actor with `getCurrency()` and `setCurrency()` methods (defaulting to USD)
+- Add a "Currency" section in `SettingsScreen.tsx` with three selectable options: USD ($), INR (₹), JPY (¥), visually highlighting the active selection
+- Persist the selected currency to the backend and local storage so it survives page refreshes
+- Update all currency formatting in ExpenseList, TotalsCards, Dashboard, Calculator, AddExpense, and expenseMapping.ts to use the selected currency symbol and locale (en-US, en-IN, ja-JP)
 
-**User-visible outcome:** The app displays a polished white and blue UI with rounded cards, visually prominent bold amounts, subtle grey dates, and consistent clean spacing throughout all screens.
+**User-visible outcome:** Users can open Settings and pick their preferred currency; all expense amounts throughout the app instantly reflect the chosen symbol and locale formatting.

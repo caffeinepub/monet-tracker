@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useCreateExpense } from '@/hooks/useExpenses';
 import { toast } from 'sonner';
 import { formatCurrency } from '@/utils/expenseMapping';
+import { useCurrency } from '@/hooks/useCurrency';
 import { Save, Loader2 } from 'lucide-react';
 
 type SessionEntry = {
@@ -19,6 +20,7 @@ type SessionEntry = {
 export default function CalculatorScreen() {
   const [sessionEntries, setSessionEntries] = useState<SessionEntry[]>([]);
   const createExpense = useCreateExpense();
+  const { currency } = useCurrency();
 
   const handleAddEntry = (entry: Omit<SessionEntry, 'id'>) => {
     const newEntry: SessionEntry = {
@@ -88,7 +90,7 @@ export default function CalculatorScreen() {
           <CardContent className="px-5 pb-5 space-y-4">
             <div className="flex items-center justify-between p-4 bg-primary/5 rounded-xl border border-primary/20">
               <span className="text-sm font-medium text-muted-foreground">Session Total</span>
-              <span className="text-2xl font-bold text-primary">{formatCurrency(sessionTotal)}</span>
+              <span className="text-2xl font-bold text-primary">{formatCurrency(sessionTotal, currency)}</span>
             </div>
 
             <Button
@@ -112,7 +114,7 @@ export default function CalculatorScreen() {
             <CardDescription className="text-xs">Review and manage entries before saving</CardDescription>
           </CardHeader>
           <CardContent className="px-5 pb-5">
-            <CalculatorSessionList entries={sessionEntries} onRemoveEntry={handleRemoveEntry} />
+            <CalculatorSessionList entries={sessionEntries} onRemoveEntry={handleRemoveEntry} currency={currency} />
           </CardContent>
         </Card>
       )}

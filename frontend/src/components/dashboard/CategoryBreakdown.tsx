@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { formatCurrency } from '@/utils/expenseMapping';
+import { useCurrency } from '@/hooks/useCurrency';
 
 type CategoryData = {
   category: string;
@@ -13,6 +14,7 @@ type CategoryBreakdownProps = {
 };
 
 export function CategoryBreakdown({ data, isLoading }: CategoryBreakdownProps) {
+  const { currency } = useCurrency();
   const sortedData = [...data].sort((a, b) => Number(b.total - a.total));
   const grandTotal = data.reduce((sum, item) => sum + item.total, 0n);
 
@@ -65,7 +67,7 @@ export function CategoryBreakdown({ data, isLoading }: CategoryBreakdownProps) {
                 <div className="flex items-center justify-between text-sm">
                   <span className="font-medium text-foreground">{item.category}</span>
                   <span className="font-bold text-foreground">
-                    {formatCurrency(item.total)}
+                    {formatCurrency(item.total, currency)}
                     <span className="font-normal text-muted-foreground ml-1">({percentage.toFixed(0)}%)</span>
                   </span>
                 </div>

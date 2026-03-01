@@ -4,6 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import type { Expense } from '@/backend';
 import { calculateTotal } from '@/utils/aggregations';
 import { formatCurrency } from '@/utils/expenseMapping';
+import { useCurrency } from '@/hooks/useCurrency';
 
 type TotalsCardsProps = {
   expenses: Expense[];
@@ -12,6 +13,7 @@ type TotalsCardsProps = {
 
 export function TotalsCards({ expenses, isLoading }: TotalsCardsProps) {
   const total = calculateTotal(expenses);
+  const { currency } = useCurrency();
 
   if (isLoading) {
     return (
@@ -52,7 +54,7 @@ export function TotalsCards({ expenses, isLoading }: TotalsCardsProps) {
           </div>
         </CardHeader>
         <CardContent className="px-5 pb-5">
-          <div className="text-3xl font-bold text-foreground">{formatCurrency(total)}</div>
+          <div className="text-3xl font-bold text-foreground">{formatCurrency(total, currency)}</div>
           <p className="text-xs text-muted-foreground mt-1">
             {expenses.length} {expenses.length === 1 ? 'transaction' : 'transactions'}
           </p>
@@ -68,8 +70,8 @@ export function TotalsCards({ expenses, isLoading }: TotalsCardsProps) {
         <CardContent className="px-5 pb-5">
           <div className="text-3xl font-bold text-foreground">
             {expenses.length > 0
-              ? formatCurrency(total / BigInt(Math.max(1, expenses.length)))
-              : formatCurrency(0n)}
+              ? formatCurrency(total / BigInt(Math.max(1, expenses.length)), currency)
+              : formatCurrency(0n, currency)}
           </div>
           <p className="text-xs text-muted-foreground mt-1">Based on recorded expenses</p>
         </CardContent>

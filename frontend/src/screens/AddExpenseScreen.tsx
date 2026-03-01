@@ -1,51 +1,32 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ExpenseForm } from '@/components/expenses/ExpenseForm';
-import { useCreateExpense } from '@/hooks/useExpenses';
-import { toast } from 'sonner';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate } from "@tanstack/react-router";
+import { ExpenseForm, ExpenseFormValues } from "@/components/expenses/ExpenseForm";
+import { useCreateExpense } from "@/hooks/useExpenses";
 
-export default function AddExpenseScreen() {
-  const createExpense = useCreateExpense();
+export function AddExpenseScreen() {
   const navigate = useNavigate();
+  const createExpense = useCreateExpense();
 
-  const handleSubmit = async (data: {
-    amount: number;
-    category: string;
-    date: string;
-    note?: string;
-  }) => {
+  async function handleSubmit(values: ExpenseFormValues) {
     try {
-      await createExpense.mutateAsync(data);
-      toast.success('Expense added successfully');
-      navigate({ to: '/expenses' });
-    } catch (error) {
-      toast.error('Failed to add expense');
-      console.error('Error adding expense:', error);
+      await createExpense.mutateAsync(values);
+      navigate({ to: "/expenses" });
+    } catch {
+      // Error toast is handled in the mutation's onError callback
     }
-  };
+  }
 
   return (
-    <div className="max-w-2xl mx-auto space-y-5">
-      <div className="mb-2">
-        <h1 className="text-2xl font-bold text-foreground mb-1">Add Expense</h1>
-        <p className="text-sm text-muted-foreground">
-          Record a new expense to track your spending
-        </p>
+    <main className="max-w-lg mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold text-foreground mb-6">Add Expense</h1>
+      <div className="bg-card rounded-xl border border-border shadow-card p-6">
+        <ExpenseForm
+          onSubmit={handleSubmit}
+          isPending={createExpense.isPending}
+          submitLabel="Add Expense"
+        />
       </div>
-
-      <Card className="rounded-xl border border-border shadow-card bg-white">
-        <CardHeader className="px-5 pt-5 pb-2">
-          <CardTitle className="text-base font-semibold">Expense Details</CardTitle>
-          <CardDescription className="text-xs">Enter the details of your expense below</CardDescription>
-        </CardHeader>
-        <CardContent className="px-5 pb-5">
-          <ExpenseForm
-            onSubmit={handleSubmit}
-            isSubmitting={createExpense.isPending}
-            submitLabel="Add Expense"
-          />
-        </CardContent>
-      </Card>
-    </div>
+    </main>
   );
 }
+
+export default AddExpenseScreen;

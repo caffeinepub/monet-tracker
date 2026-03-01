@@ -23,6 +23,11 @@ export const CategoryTotal = IDL.Record({
   'total' : IDL.Nat,
   'category' : Category,
 });
+export const Currency = IDL.Variant({
+  'INR' : IDL.Null,
+  'JPY' : IDL.Null,
+  'USD' : IDL.Null,
+});
 
 export const idlService = IDL.Service({
   'addExpense' : IDL.Func(
@@ -33,6 +38,7 @@ export const idlService = IDL.Service({
   'deleteExpense' : IDL.Func([IDL.Text], [], []),
   'getAllExpenses' : IDL.Func([], [IDL.Vec(Expense)], ['query']),
   'getCategoryTotals' : IDL.Func([], [IDL.Vec(CategoryTotal)], ['query']),
+  'getCurrencyPreference' : IDL.Func([], [Currency], ['query']),
   'getExpense' : IDL.Func([IDL.Text], [Expense], ['query']),
   'getExpensesByCategory' : IDL.Func([Category], [IDL.Vec(Expense)], ['query']),
   'getExpensesByDate' : IDL.Func([IDL.Text], [IDL.Vec(Expense)], ['query']),
@@ -43,6 +49,7 @@ export const idlService = IDL.Service({
     ),
   'getTotalByCategory' : IDL.Func([Category], [IDL.Nat], ['query']),
   'getTotalExpenses' : IDL.Func([], [IDL.Nat], ['query']),
+  'setCurrencyPreference' : IDL.Func([Currency], [], []),
   'updateExpense' : IDL.Func(
       [IDL.Text, IDL.Nat, Category, IDL.Text, IDL.Opt(IDL.Text)],
       [Expense],
@@ -68,6 +75,11 @@ export const idlFactory = ({ IDL }) => {
     'total' : IDL.Nat,
     'category' : Category,
   });
+  const Currency = IDL.Variant({
+    'INR' : IDL.Null,
+    'JPY' : IDL.Null,
+    'USD' : IDL.Null,
+  });
   
   return IDL.Service({
     'addExpense' : IDL.Func(
@@ -78,6 +90,7 @@ export const idlFactory = ({ IDL }) => {
     'deleteExpense' : IDL.Func([IDL.Text], [], []),
     'getAllExpenses' : IDL.Func([], [IDL.Vec(Expense)], ['query']),
     'getCategoryTotals' : IDL.Func([], [IDL.Vec(CategoryTotal)], ['query']),
+    'getCurrencyPreference' : IDL.Func([], [Currency], ['query']),
     'getExpense' : IDL.Func([IDL.Text], [Expense], ['query']),
     'getExpensesByCategory' : IDL.Func(
         [Category],
@@ -92,6 +105,7 @@ export const idlFactory = ({ IDL }) => {
       ),
     'getTotalByCategory' : IDL.Func([Category], [IDL.Nat], ['query']),
     'getTotalExpenses' : IDL.Func([], [IDL.Nat], ['query']),
+    'setCurrencyPreference' : IDL.Func([Currency], [], []),
     'updateExpense' : IDL.Func(
         [IDL.Text, IDL.Nat, Category, IDL.Text, IDL.Opt(IDL.Text)],
         [Expense],

@@ -12,6 +12,9 @@ import type { Principal } from '@icp-sdk/core/principal';
 
 export type Category = string;
 export interface CategoryTotal { 'total' : bigint, 'category' : Category }
+export type Currency = { 'INR' : null } |
+  { 'JPY' : null } |
+  { 'USD' : null };
 export interface Expense {
   'id' : string,
   'date' : string,
@@ -30,12 +33,14 @@ export interface _SERVICE {
   'deleteExpense' : ActorMethod<[string], undefined>,
   'getAllExpenses' : ActorMethod<[], Array<Expense>>,
   'getCategoryTotals' : ActorMethod<[], Array<CategoryTotal>>,
+  'getCurrencyPreference' : ActorMethod<[], Currency>,
   'getExpense' : ActorMethod<[string], Expense>,
   'getExpensesByCategory' : ActorMethod<[Category], Array<Expense>>,
   'getExpensesByDate' : ActorMethod<[string], Array<Expense>>,
   'getExpensesByDateRange' : ActorMethod<[string, string], Array<Expense>>,
   'getTotalByCategory' : ActorMethod<[Category], bigint>,
   'getTotalExpenses' : ActorMethod<[], bigint>,
+  'setCurrencyPreference' : ActorMethod<[Currency], undefined>,
   'updateExpense' : ActorMethod<
     [string, bigint, Category, string, [] | [string]],
     Expense

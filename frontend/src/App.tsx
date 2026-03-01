@@ -3,7 +3,7 @@ import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
 import { AppShell } from './components/layout/AppShell';
 import DashboardScreen from './screens/DashboardScreen';
-import AddExpenseScreen from './screens/AddExpenseScreen';
+import { AddExpenseScreen } from './screens/AddExpenseScreen';
 import ExpenseListScreen from './screens/ExpenseListScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import CalculatorScreen from './screens/CalculatorScreen';
